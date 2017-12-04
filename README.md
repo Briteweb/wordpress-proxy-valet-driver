@@ -1,4 +1,4 @@
-![briteweb-full-transparent](https://user-images.githubusercontent.com/9011845/33579947-465e190c-d900-11e7-9eff-fbb52eb3fbed.png)
+![briteweb-full-transparent](https://user-images.githubusercontent.com/9011845/33580019-879c320a-d900-11e7-99b9-883bf2f5335d.png)
 
 # WordPress Proxy Valet Driver
 
