@@ -11,7 +11,8 @@
 	```
 	
 2. Enable the driver by adding a file called `.uploads-proxy` to your sites WP root, containing the URL that you wish to proxy to in `.uploads-proxy`. 
-In the one-liner below, **replace https://example.com with your actual production URL.** 
+
+	In the one-liner below, **replace https://example.com with your actual production URL.** 
 
 	```bash
 	echo https://example.com >> .uploads-proxy	
