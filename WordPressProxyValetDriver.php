@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Class WordPressProxyValetDriver
  * @author  Jeff Sagal
@@ -37,7 +36,6 @@ class WordPressProxyValetDriver extends WordPressValetDriver
         'webm',
         'mp4',
     ];
-
     /**
      * The file to check for when determining
      * whether to use this driver.
@@ -48,7 +46,6 @@ class WordPressProxyValetDriver extends WordPressValetDriver
      * @var string
      */
     protected $configFile = '.uploads-proxy';
-
     /**
      * Determine if the driver serves the request.
      *
@@ -61,7 +58,6 @@ class WordPressProxyValetDriver extends WordPressValetDriver
     {
         return file_exists("$sitePath/$this->configFile");
     }
-
     /**
      * Determine if the incoming request is for a static file.
      * Return early if it's going to be served through a proxy.
@@ -76,10 +72,8 @@ class WordPressProxyValetDriver extends WordPressValetDriver
         if ($this->shouldProxy($uri) && ! $this->isActualFile($staticFilePath = $sitePath.$uri)) {
             return true;
         }
-
         return parent::isStaticFile($sitePath, $siteName, $uri);
     }
-
     /**
      * Serve the static file at the given path.
      *
@@ -90,17 +84,13 @@ class WordPressProxyValetDriver extends WordPressValetDriver
      */
     public function serveStaticFile($staticFilePath, $sitePath, $siteName, $uri)
     {
-        if ($this->shouldProxy($uri)) {
+        if ($this->shouldProxy($uri) && !file_exists($staticFilePath)) {
             $proxy = $this->getProxyUrl($sitePath);
-
             header("Location: $proxy/$uri");
-
             return;
         }
-
         parent::serveStaticFile($staticFilePath, $sitePath, $siteName, $uri);
     }
-
     /**
      * Determine if the URI should be proxied.
      *
@@ -110,10 +100,8 @@ class WordPressProxyValetDriver extends WordPressValetDriver
     public function shouldProxy($uri)
     {
         $extension = pathinfo($uri, PATHINFO_EXTENSION);
-
         return in_array($extension, $this->proxyable);
     }
-
     /**
      * Get the URL from the config file.
      *
@@ -123,7 +111,6 @@ class WordPressProxyValetDriver extends WordPressValetDriver
     protected function getProxyUrl($sitePath)
     {
         $proxy = rtrim(file_get_contents("$sitePath/$this->configFile"), '/');
-
         return rtrim($proxy);
     }
 }
