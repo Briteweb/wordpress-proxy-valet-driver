@@ -90,7 +90,7 @@ class WordPressProxyValetDriver extends WordPressValetDriver
      */
     public function serveStaticFile($staticFilePath, $sitePath, $siteName, $uri)
     {
-        if ($this->shouldProxy($uri)) {
+        if ($this->shouldProxy($uri) && !file_exists($staticFilePath)) {
             $proxy = $this->getProxyUrl($sitePath);
 
             header("Location: $proxy/$uri");
