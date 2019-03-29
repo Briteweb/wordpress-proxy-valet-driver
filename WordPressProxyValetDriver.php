@@ -110,8 +110,10 @@ class WordPressProxyValetDriver extends WordPressValetDriver
     public function shouldProxy($uri)
     {
         $extension = pathinfo($uri, PATHINFO_EXTENSION);
+        $dirName = pathinfo($uri, PATHINFO_DIRNAME);
 
-        return in_array($extension, $this->proxyable);
+        return in_array($extension, $this->proxyable) &&
+            strpos($dirName, 'wp-content/uploads') !== false;
     }
 
     /**
