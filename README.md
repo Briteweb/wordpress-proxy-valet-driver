@@ -7,7 +7,7 @@
 1. Install the Valet Driver
 	
 	```bash
-	wget https://raw.githubusercontent.com/briteweb/wordpress-proxy-valet-driver/master/WordPressProxyValetDriver.php -O ~/.valet/Drivers/WordPressProxyValetDriver.php
+	wget https://raw.githubusercontent.com/briteweb/wordpress-proxy-valet-driver/master/WordPressProxyValetDriver.php -O ~/.config/valet/Drivers/WordPressProxyValetDriver.php
 	```
 	
 2. Enable the driver by adding a file called `.uploads-proxy` to your sites WP root, containing the URL that you wish to proxy to in `.uploads-proxy`. 
