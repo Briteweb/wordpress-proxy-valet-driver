@@ -113,7 +113,7 @@ class WordPressProxyValetDriver extends WordPressValetDriver
         $dirName = pathinfo($uri, PATHINFO_DIRNAME);
 
         return in_array($extension, $this->proxyable) &&
-            strpos($dirName, 'wp-content/uploads') !== false;
+            (strpos($dirName, 'wp-content/uploads') !== false || strpos($dirName, 'app/uploads') !== false);
     }
 
     /**
