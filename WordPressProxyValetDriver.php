@@ -1,5 +1,9 @@
 <?php
 
+namespace Valet\Drivers\Custom;
+
+use Valet\Drivers\Specific\WordPressValetDriver;
+
 /**
  * Class WordPressProxyValetDriver
  * @author  Jeff Sagal
@@ -57,7 +61,7 @@ class WordPressProxyValetDriver extends WordPressValetDriver
      * @param  string $uri
      * @return bool
      */
-    public function serves($sitePath, $siteName, $uri)
+    public function serves(string $sitePath, string $siteName, string $uri): bool
     {
         return file_exists("$sitePath/$this->configFile");
     }
@@ -88,7 +92,7 @@ class WordPressProxyValetDriver extends WordPressValetDriver
      * @param string $siteName
      * @param string $uri
      */
-    public function serveStaticFile($staticFilePath, $sitePath, $siteName, $uri)
+    public function serveStaticFile(string $staticFilePath, string $sitePath, string $siteName, string $uri): void
     {
         if ($this->shouldProxy($uri) && !file_exists($staticFilePath)) {
             $proxy = $this->getProxyUrl($sitePath);
@@ -113,7 +117,7 @@ class WordPressProxyValetDriver extends WordPressValetDriver
         $dirName = pathinfo($uri, PATHINFO_DIRNAME);
 
         return in_array($extension, $this->proxyable) &&
-            strpos($dirName, 'wp-content/uploads') !== false;
+            strpos($dirName, 'content/uploads') !== false;
     }
 
     /**
@@ -128,4 +132,5 @@ class WordPressProxyValetDriver extends WordPressValetDriver
 
         return rtrim($proxy);
     }
+
 }
